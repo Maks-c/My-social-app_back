@@ -71,6 +71,7 @@ router.get('/friends/:userId', async (req, res) => {
         })
 
         res.status(200).json(friendList)
+
     } catch (err){
 
         res.status(500).json(err)

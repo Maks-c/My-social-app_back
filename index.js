@@ -10,15 +10,15 @@ const postRoute = require('./routes/posts')
 const conversationRoute = require('./routes/conversations')
 const messageRoute = require('./routes/messages')
 const multer = require('multer')
-const path=require('path')
+const path = require('path')
 
 dotenv.config()
 
-mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true,useUnifiedTopology:true}, () => {
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true}, () => {
     console.log("connect mongodb")
 })
 
-app.use('/images',express.static(path.join(__dirname,"public/images")))
+app.use('/images', express.static(path.join(__dirname, "public/images")))
 
 
 //middleware
@@ -47,7 +47,7 @@ const filterFile = (req, file, cb) => {
 }
 
 
-const upload = multer({storage,filterFile})
+const upload = multer({storage, filterFile})
 
 app.post('/api/upload', upload.single('file'), (req, res) => {
     try{
@@ -62,8 +62,8 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 app.use('/api/users', userRoute)
 app.use('/api/auth', authRoute)
 app.use('/api/posts', postRoute)
-app.use('/api/conversations',conversationRoute)
-app.use('/api/message',messageRoute)
+app.use('/api/conversations', conversationRoute)
+app.use('/api/message', messageRoute)
 
 
 app.listen(8800, () => {
